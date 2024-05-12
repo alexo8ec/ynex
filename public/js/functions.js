@@ -13,6 +13,9 @@ $(document).ready(function () {
     });
 
 });
+function seleccionarEmpresa(id) {
+    window.location.href = 'admin/setEmpresa?i=' + id;
+}
 function ajax(url, data, dataType) {
     return $.ajax({
         url: url,

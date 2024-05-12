@@ -17,7 +17,6 @@ class Menu extends Model
         $menu = [];
         $array = [];
         $permisos = PermisosUsuario::where('id_usuario', Auth::user()->id)->first(['permisos']);
-
         if ($permisos != '') {
             $permisos = json_decode($permisos->permisos);
             $menu = Menu::select(

@@ -1,6 +1,5 @@
 <div class="content">
     <div class="main-content">
-        <!-- Page Header -->
         <div class="block justify-between page-header md:flex">
             <div>
                 <h3 class="!text-defaulttextcolor dark:!text-defaulttextcolor/70 dark:text-white dark:hover:text-white text-[1.125rem] font-semibold"> Empty</h3>
@@ -17,6 +16,5 @@
                 </li>
             </ol>
         </div>
-        <!-- Page Header Close -->
     </div>
 </div>

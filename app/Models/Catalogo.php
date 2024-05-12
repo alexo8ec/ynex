@@ -28,8 +28,8 @@ class Catalogo extends Model
                     'catalogo.id_usuario_modificacion',
                     DB::raw("DATE_FORMAT(catalogo.created_at, '%Y-%m-%d') as created_at"),
                     DB::raw("DATE_FORMAT(catalogo.updated_at, '%Y-%m-%d') as updated_at"),
-                    'uc.user as usuario_creacion',
-                    'um.user as usuario_modificacion'
+                    'uc.usuario as usuario_creacion',
+                    'um.usuario as usuario_modificacion'
                 ]);
         } else {
             return Catalogo::find($id);

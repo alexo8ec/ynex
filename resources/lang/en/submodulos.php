@@ -66,4 +66,5 @@ return [
     'notadeventa' => 'Sale note',
     'listadenotadeventa' => 'Sales note list',
     'listadeventas' => 'Sales list',
+    'dashboard' => 'Dashboard',
 ];

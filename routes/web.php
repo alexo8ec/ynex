@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ConfiguracionesController;
+use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\UtilidadesController;
@@ -31,4 +32,7 @@ Route::middleware(['auth', '2fa', 'primicia'])->group(function ($route) {
 
     $route->get('/utilidades', [UtilidadesController::class, 'index']);
     $route->match(['get', 'post'], 'utilidades/{submodulo}', [UtilidadesController::class, 'index']);
+
+    $route->get('/empresa', [EmpresaController::class, 'index']);
+    $route->match(['get', 'post'], 'empresa/{submodulo}', [EmpresaController::class, 'index']);
 });

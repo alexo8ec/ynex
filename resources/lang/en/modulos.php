@@ -22,4 +22,5 @@ return [
     'billetera' => 'Wallet',
     'reportes' => 'Reports',
     'configuracion' => 'Configuration',
+    'admin'=>'Administrator',
 ];

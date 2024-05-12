@@ -17,6 +17,11 @@
                 <div class="box">
                     <div class="box-header">
                         <h5 class="box-title">{{config('data.titulotabla')}}</h5>
+                        <div>
+                            <div style="position: absolute; right: 10px;top:12px">
+                                <a href="javascript:;" class="ti-btn ti-btn-primary-full !py-1 !px-2 ti-btn-wave" onclick="agregarMenu();"><i class="bi bi-plus-circle-fill"></i> <span class="botones">{{ trans('tabla.agregar') }}</span></a>
+                            </div>
+                        </div>
                     </div>
                     <div class="box-body space-y-3">
                         <table id="tableMenu" class="table table-striped" width="100%">

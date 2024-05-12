@@ -22,4 +22,5 @@ return [
     'billetera' => 'Billetera',
     'reportes' => 'Reportes',
     'configuracion' => 'Configuración',
+    'admin' => 'Administrador',
 ];

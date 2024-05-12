@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Empresas;
 use App\Models\Menu;
 use App\Models\User;
 use Closure;
@@ -20,6 +21,7 @@ class Primicia
     {
         $data['menu'] = Menu::getMenu();
         $data['usuario'] = User::getUsuarios(Auth::user()->id);
+        $data['empresas'] = Empresas::getEmpresas();
         if (session('periodo') == date('Y'))
             session(['periodo' => date('Y')]);
         config(['data' => $data]);

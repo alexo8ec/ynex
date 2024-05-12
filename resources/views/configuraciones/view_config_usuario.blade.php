@@ -71,11 +71,11 @@
                                     <div class="sm:grid grid-cols-12 gap-6 mb-6">
                                         <div class="xl:col-span-6 col-span-12">
                                             <label for="nombre" class="form-label">Nombres</label>
-                                            <input type="text" class="form-control w-full !rounded-md" id="nombre" placeholder="Nombres" value="{{config('data.usuario')->first_name}}">
+                                            <input type="text" class="form-control w-full !rounded-md" id="nombre" placeholder="Nombres" value="{{config('data.usuario')->nombre}}">
                                         </div>
                                         <div class="xl:col-span-6 col-span-12">
                                             <label for="apellido" class="form-label">Apellido</label>
-                                            <input type="text" class="form-control w-full !rounded-md" id="last-name" placeholder="Apellidos" value="{{config('data.usuario')->last_name}}">
+                                            <input type="text" class="form-control w-full !rounded-md" id="last-name" placeholder="Apellidos" value="{{config('data.usuario')->apellido}}">
                                         </div>
                                         <div class="xl:col-span-12 col-span-12">
                                             <label class="form-label">User Name</label>

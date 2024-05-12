@@ -52,11 +52,11 @@ class User extends Authenticatable
                 ->first([
                     'users.id',
                     'users.email',
-                    'users.first_name',
-                    'users.last_name',
-                    'users.identify',
-                    'users.address',
-                    'users.user',
+                    'users.nombre',
+                    'users.apellido',
+                    'users.identificacion',
+                    'users.direccion',
+                    'users.usuario',
                     't.max_attempts',
                     't.decay_minutes',
                     'cargo.nombre as cargo'

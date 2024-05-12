@@ -16,7 +16,7 @@
                 </svg></div>
             <ul class="main-menu">
                 <li class="slide has-sub">
-                    <a href="/" class="side-menu__item"><i class="bx bx-home side-menu__icon"></i><span class="side-menu__label">Inicio</span></a>
+                    <a href="/admin" class="side-menu__item"><i class="bx bx-home side-menu__icon"></i><span class="side-menu__label">Inicio</span></a>
                     <ul class="slide-menu child1">
                         <li class="slide side-menu__label1">
                             <a href="javascript:void(0)">Inicio</a>
@@ -24,16 +24,17 @@
                     </ul>
                 </li>
                 <?php
-                $menu = '';
-                if (config('data.menu') != null && count(config('data.menu')) > 0) {
-                    foreach (config('data.menu') as $row) {
-                        $menuOpen = '';
-                        $menuActive = '';
-                        if ($row['controlador'] == config('data.controlador')) {
-                            $menuActive = 'active';
-                            $menuOpen = 'open';
-                        }
-                        $menu .= '<li class="slide has-sub ' . $menuActive . ' ' . $menuOpen . '">
+                if (session('idEmpresa') != '') {
+                    $menu = '';
+                    if (config('data.menu') != null && count(config('data.menu')) > 0) {
+                        foreach (config('data.menu') as $row) {
+                            $menuOpen = '';
+                            $menuActive = '';
+                            if ($row['controlador'] == config('data.controlador')) {
+                                $menuActive = 'active';
+                                $menuOpen = 'open';
+                            }
+                            $menu .= '<li class="slide has-sub ' . $menuActive . ' ' . $menuOpen . '">
                                 <a href="javascript:void(0);" class="side-menu__item ' . $menuActive . '">
                                 <i class="' . $row['icono_menu'] . ' side-menu__icon"></i>
                                 <span class="side-menu__label">' . $row['nombre_menu'] . '</span>
@@ -41,20 +42,21 @@
                             </a>
                             <ul class="slide-menu child1">
                                 <li class="slide side-menu__label1"><a href="javascript:void(0)">' . $row['nombre_menu'] . '</a></li>';
-                        if (count($row['submodulos']) > 0) {
-                            foreach ($row['submodulos'] as $submodulo) {
-                                $menuActive = '';
-                                if ($submodulo['funcion'] == config('data.submodulo')) {
-                                    $menuActive = 'active';
+                            if (count($row['submodulos']) > 0) {
+                                foreach ($row['submodulos'] as $submodulo) {
+                                    $menuActive = '';
+                                    if ($submodulo['funcion'] == config('data.submodulo')) {
+                                        $menuActive = 'active';
+                                    }
+                                    $menu .= '<li class="slide ' . $menuActive . '"><a href="' . $row['controlador'] . '/' . $submodulo['funcion'] . '" class="side-menu__item ' . $menuActive . '">' . $submodulo['nombre_submenu'] . '</a></li>';
                                 }
-                                $menu .= '<li class="slide ' . $menuActive . '"><a href="' . $row['controlador'] . '/' . $submodulo['funcion'] . '" class="side-menu__item ' . $menuActive . '">' . $submodulo['nombre_submenu'] . '</a></li>';
                             }
-                        }
-                        $menu .= '</ul>
+                            $menu .= '</ul>
                         </li>';
+                        }
                     }
+                    echo $menu;
                 }
-                echo $menu;
                 ?>
             </ul>
             <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
