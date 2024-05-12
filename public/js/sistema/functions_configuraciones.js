@@ -266,6 +266,10 @@ $(document).ready(function () {
             mensajes('question', '¿Esta seguro de guardar la informacón?');
         }
     });
+    $('.select2').select2({
+        dropdownParent: $('#myModal .ti-modal-body'),
+        dir: "ltr"
+    });
 });
 function agregarSubmenu(id) {
     window.location.href = $('#controlador').val() + '/agregarSubmenu/' + id;
@@ -304,6 +308,7 @@ $('#buscador').on('input', function () {
 });
 function agregarMenu() {
     limpiarModal('frm_');
+    $('#menuPadre').val($('#idMenu').val()).tigger('change');
 }
 function agregarIcono(icon) {
     var iconoPrincipal = icon.querySelector('.Icon_icon__I3Lry i').classList; // Obtener las clases del icono principal

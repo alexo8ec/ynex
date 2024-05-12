@@ -127,9 +127,7 @@
     <div class="hs-overlay-open:mt-7 ti-modal-box mt-0 ease-out md:!max-w-2xl md:w-full m-3 md:mx-auto">
         <div class="ti-modal-content">
             <div class="ti-modal-header">
-                <h6 class="ti-modal-title">
-                    Modal title
-                </h6>
+                <h6 class="ti-modal-title">Modal title</h6>
                 <button type="button" class="hs-dropdown-toggle ti-modal-close-btn" data-hs-overlay="#myModal">
                     <span class="sr-only">Close</span>
                     <svg class="w-3.5 h-3.5" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,9 +140,27 @@
                 <form id="frm_">
                     @csrf
                     <input type="hidden" id="action" value="<?= url('/configuraciones/saveMenu'); ?>" />
-                    <input type="hidden" id="id_menu" name="id_menu" value="" />
+                    <input type="hidden" id="id_menu" name="id_menu" value="{{config('data.idMenu')}}" />
                     <input type="hidden" id="estado" name="estado" value="1" />
                     <div class="grid grid-cols-12 sm:gap-x-6 sm:gap-y-4">
+                        <div class="md:col-span-6 col-span-12 mb-4">
+                            <label class="form-label">Padre</label>
+                            <select class="select2 w-full" id="menuPadre" name="menuPadre">
+                                <option value="">Seleccionar</option>
+                                <?php
+                                if (config('data.menuPadre') != null) {
+                                    foreach (config('data.menuPadre') as $row) {
+                                        $select = ($row->id_menu == config('data.idMenu')) ? 'selected' : '';
+                                        echo '<option value="' . $row->id_menu . '" ' . $select . '>' . $row->nombre . '</option>';
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="md:col-span-6 col-span-12 mb-4">
+                            <label class="form-label">Controlador</label>
+                            <input type="text" class="form-control" id="nombre_controlador" placeholder="Controlador" aria-label="Controlador">
+                        </div>
                         <div class="md:col-span-6 col-span-12 mb-4">
                             <label class="form-label">Nombre</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" onblur="verificarNombreMenu(this)" placeholder="Nombre" aria-label="Nombre">

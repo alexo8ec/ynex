@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="/build/assets/libs/@simonwep/pickr/themes/nano.min.css">
 <script src="/build/assets/main.js"></script>
 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+
 <?php
 echo '<link rel="stylesheet" href="/build/assets/libs/choices.js/public/assets/styles/choices.min.css">';
 if (config('data.controlador') == 'configuraciones' && config('data.submodulo') == 'usuario') {

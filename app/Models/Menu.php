@@ -118,8 +118,12 @@ class Menu extends Model
     public static function getSubMenuGlobal($id, $idSub = '')
     {
         if ($idSub == '') {
-            return Menu::where('id_pertenece', $id)->get();
+            return Menu::join('users as uc', 'menu.id_usuario_creacion', 'uc.id_usuario')
+                ->join('users as um', 'menu.id_usuario_modificacion', 'um.id_usuario')
+                ->where('id_pertenece', $id)
+                ->get();
         } else {
+            return Menu::find($idSub);
         }
     }
     public static function getMenuGlobal($id = '')

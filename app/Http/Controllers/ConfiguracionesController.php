@@ -33,6 +33,7 @@ class ConfiguracionesController extends Controller
         } elseif ($r->submodulo == 'agregarSubmenu') {
             $data['titulotabla'] = 'Lista de submenú';
             $data['idMenu'] = $r->id;
+            $data['menuPadre'] = Menu::getMenuGlobal();
             $data['content'] = view($this->_controlador . '.view_submenu');
         } else {
             return view('errors.view_404');

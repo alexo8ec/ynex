@@ -23,6 +23,10 @@ if (config('data.controlador') == 'configuraciones' && config('data.submodulo') 
 <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.6/js/dataTables.bootstrap4.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<link rel="modulepreload" href="/build/assets/select2-fce7f173.js" />
+<script type="module" src="/build/assets/select2-fce7f173.js"></script>
+
 <link rel="modulepreload" href="/build/assets/custom-switcher-508a7845.js" />
 <script type="module" src="/build/assets/custom-switcher-508a7845.js"></script>
 
