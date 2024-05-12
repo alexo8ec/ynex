@@ -81,10 +81,12 @@
                         </div>
                     </div>
                     <div class="box-body space-y-3">
-                        <table id="tableMenu" class="table table-striped tablaDatos" width="100%">
+                        <input type="hidden" id="idMenu" value="{{config('data.idMenu')}}" />
+                        <table id="tableSubMenu" class="table table-striped tablaDatos" width="100%">
                             <thead>
                                 <tr>
                                     <th>Id</th>
+                                    <th>Menú</th>
                                     <th>Nombre</th>
                                     <th>Controlador</th>
                                     <th>Icono</th>
@@ -101,6 +103,7 @@
                             <tfoot>
                                 <tr>
                                     <th>Id</th>
+                                    <th>Menú</th>
                                     <th>Nombre</th>
                                     <th>Controlador</th>
                                     <th>Icono</th>

@@ -26,6 +26,14 @@ class ConfiguracionesController extends Controller
         } elseif ($r->submodulo == 'catalogo') {
             $data['titulotabla'] = 'Lista de catalogo';
             $data['content'] = view($this->_controlador . '.view_catalogo');
+        } elseif ($r->submodulo == 'verificarNombreMenu') {
+            return Menu::verificarNombreMenu($r);
+        } elseif ($r->submodulo == 'saveMenu') {
+            return Menu::saveMenu($r);
+        } elseif ($r->submodulo == 'agregarSubmenu') {
+            $data['titulotabla'] = 'Lista de submenú';
+            $data['idMenu'] = $r->id;
+            $data['content'] = view($this->_controlador . '.view_submenu');
         } else {
             return view('errors.view_404');
         }

@@ -38,12 +38,23 @@ class Util extends Model
             $configIntentos->save();
         }
     }
-
     public static function resetPassword($r)
     {
     }
     public static function getKeyPassword()
     {
         return '|FACTURALGO_2004|';
+    }
+    public static function obtenerIPCliente()
+    {
+        $ip = '';
+        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } elseif (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
     }
 }

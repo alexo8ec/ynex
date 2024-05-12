@@ -17,11 +17,34 @@ $(document).ready(function () {
     $('#btnSi').click(function () {
         cambiarEstado(varEstado, varIdMenu, varTipo);
     });
+    $('#btnSiForm').click(function () {
+        var json = ajax($('#action').val(), $('#frm_').serialize(), 'json');
+        if (json.responseJSON !== null) {
+            json = json.responseJSON;
+            mensajes(json.status, json.message);
+            if (json.reload === '') {
+                $('.tablaDatos').DataTable().ajax.reload();
+            }
+        }
+    });
 });
+function limpiarModal(frm) {
+    $('#' + frm)[0].reset();
+    $('#' + frm).trigger('reset');
+    $('.select2').val('').trigger('change');
+}
+function mensajes(icon, message) {
+    $('#message').html(message);
+    $('#hs-small-modal-' + icon).removeClass('hidden');
+}
+function cerrarModal(icon) {
+    $('#hs-small-modal-' + icon).addClass('hidden');
+}
 function setEstado(estado, id, tipo) {
     varEstado = estado;
     varIdMenu = id;
     varTipo = tipo;
+    $('#hs-small-modal-' + icon).removeClass('hidden');
 }
 function cambiarEstado(estado, id, tipo) {
     var data = {
@@ -32,7 +55,10 @@ function cambiarEstado(estado, id, tipo) {
     if (json.responseJSON !== null) {
         json = json.responseJSON;
         if (json.status == 'success') {
-            $('.tablaDatos').DataTable().ajax.reload();
+            if (json.reload === '') {
+                location.reload();
+                //$('.tablaDatos').DataTable().ajax.reload();
+            }
         }
         else {
             alert(json.message);

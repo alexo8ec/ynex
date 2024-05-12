@@ -21,7 +21,7 @@ Route::group(['prefix' => ''], function ($route) {
     $route->get('/verificar2Feet', [LoginController::class, 'verificar2Feet'])->name('two-factor.index');
     $route->post('/verifyTwoFactor', [LoginController::class, 'verifyTwoFactor'])->name('verifyTwoFactor');
 })
-->middleware('throttle:3,1'); // Permitirá 3 intentos cada 1 minuto;
+    ->middleware('throttle:3,1'); // Permitirá 3 intentos cada 1 minuto;
 
 Route::middleware(['auth', '2fa', 'primicia'])->group(function ($route) {
     $route->get('/admin', [AdminController::class, 'index'])->name('admin');
@@ -29,6 +29,7 @@ Route::middleware(['auth', '2fa', 'primicia'])->group(function ($route) {
 
     $route->get('/configuraciones', [ConfiguracionesController::class, 'index']);
     $route->match(['get', 'post'], 'configuraciones/{submodulo}', [ConfiguracionesController::class, 'index']);
+    $route->match(['get', 'post'], 'configuraciones/{submodulo}/{id}', [ConfiguracionesController::class, 'index']);
 
     $route->get('/utilidades', [UtilidadesController::class, 'index']);
     $route->match(['get', 'post'], 'utilidades/{submodulo}', [UtilidadesController::class, 'index']);

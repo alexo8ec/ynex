@@ -12,6 +12,79 @@ class Menu extends Model
     protected $table = 'menu';
     protected $primaryKey  = 'id_menu';
 
+    public static function saveMenu($r)
+    {
+        $arrayRespuesta = [];
+        try {
+            if ($r->id_menu == '') {
+                $menu = new Menu();
+                $menu->nombre = $r->nombre;
+                $menu->controlador = $r->controlador;
+                $menu->icono = $r->icono;
+                $menu->estado = 1;
+                $menu->orden = $r->orden;
+                $menu->id_usuario_creacion = Auth::user()->id;
+                $menu->id_usuario_modificacion = Auth::user()->id;
+                $menu->created_at = date('Y-m-d H:i:s');
+                $menu->updated_at = date('Y-m-d H:i:s');
+                $menu->save();
+            } else {
+                $menu = Menu::find($r->id_menu);
+                $menu->nombre = $r->nombre;
+                $menu->controlador = $r->controlador;
+                $menu->icono = $r->icono;
+                $menu->estado = $r->estado;
+                $menu->orden = $r->orden;
+                $menu->id_usuario_modificacion = Auth::user()->id;
+                $menu->updated_at = date('Y-m-d H:i:s');
+                $menu->save();
+            }
+            $arrayRespuesta = [
+                'status' => 'success',
+                'code' => 200,
+                'message' => 'Datos guardados correctamente',
+                'reload' => ''
+            ];
+        } catch (\Exception $e) {
+            $arrayRespuesta = [
+                'status' => 'error',
+                'code' => 500,
+                'message' => $e->getMessage(),
+                'modelo' => self::$modelo,
+                'metodo' => __METHOD__,
+                'ruta' => __FILE__,
+                'linea' => __LINE__,
+            ];
+        }
+        return $arrayRespuesta;
+    }
+    public static function verificarNombreMenu($r)
+    {
+        $arrayRespuesta = [];
+        $menu = Menu::where('nombre', $r->nombre)->count();
+        if ($menu > 0) {
+            $arrayRespuesta = [
+                'status' => 'info',
+                'code' => 500,
+                'message' => 'El nombre del menu ya existe',
+                'modelo' => self::$modelo,
+                'metodo' => __METHOD__,
+                'ruta' => __FILE__,
+                'linea' => __LINE__,
+            ];
+        } else {
+            $arrayRespuesta = [
+                'status' => 'success',
+                'code' => 200,
+                'message' => 'El nombre del menu no existe',
+                'modelo' => self::$modelo,
+                'metodo' => __METHOD__,
+                'ruta' => __FILE__,
+                'linea' => __LINE__,
+            ];
+        }
+        return $arrayRespuesta;
+    }
     public static function cambiarEstado($r)
     {
         $arrayRespuesta = [];
@@ -27,6 +100,7 @@ class Menu extends Model
                 'status' => 'success',
                 'code' => 200,
                 'message' => 'Datos guardados correctamente',
+                'reload' => ''
             ];
         } catch (\Exception $e) {
             $arrayRespuesta = [
@@ -40,6 +114,13 @@ class Menu extends Model
             ];
         }
         return $arrayRespuesta;
+    }
+    public static function getSubMenuGlobal($id, $idSub = '')
+    {
+        if ($idSub == '') {
+            return Menu::where('id_pertenece', $id)->get();
+        } else {
+        }
     }
     public static function getMenuGlobal($id = '')
     {

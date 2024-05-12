@@ -36,6 +36,15 @@ class UtilidadesController extends Controller
                 "aaData" => $data
             );
             return json_encode($results);
+        } elseif ($r->submodulo == 'getSubMenu') {
+            $data = Menu::getSubMenuGlobal($r->id);
+            $results = array(
+                "sEcho" => 1,
+                "iTotalRecords" => count($data),
+                "iTotalDisplayRecords" => count($data),
+                "aaData" => $data
+            );
+            return json_encode($results);
         } elseif ($r->submodulo == 'cambiarEstadoMenu') {
             return Menu::cambiarEstado($r);
         } else {
