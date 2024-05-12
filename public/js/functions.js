@@ -11,8 +11,24 @@ $(document).ready(function () {
         };
         ajax('utilidades/saveTiempoLogin', data, 'json');
     });
-
 });
+function cambiarEstado(estado, id, tipo) {
+    var data = {
+        estado: estado,
+        id: id,
+    };
+    var json = ajax('utilidades/cambiarEstado' + tipo, data, 'json');
+    if (json.responseJSON !== null) {
+        json = json.responseJSON;
+        if (json.status == 'success') {
+            $('.tablaDatos').DataTable().ajax.reload();
+            alert(json.message);
+        }
+        else {
+            alert(json.message);
+        }
+    }
+}
 function seleccionarEmpresa(id) {
     window.location.href = 'admin/setEmpresa?i=' + id;
 }

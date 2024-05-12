@@ -28,6 +28,8 @@ return [
     'ficha' => 'File',
     'desactivar' => 'Desactivate',
     'activar' => 'Activate',
+    'activo' => 'Activate',
+    'inactivo' => 'Inactive',
     'agregar' => 'Add',
     'imprimir' => 'Print',
     'anular' => 'Cancel',

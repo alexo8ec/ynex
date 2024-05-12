@@ -23,9 +23,12 @@ if (config('data.controlador') == 'configuraciones' && config('data.submodulo') 
 <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.6/js/dataTables.bootstrap4.js"></script>
 
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.9/js/dataTables.buttons.min.js"></script>
+<link rel="modulepreload" href="/build/assets/custom-switcher-508a7845.js" />
+<script type="module" src="/build/assets/custom-switcher-508a7845.js"></script>
+
+<!--<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.9/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.9/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.9/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.9/js/buttons.print.min.js"></script>-->
 
 <script src="/js/functions.js"></script>
 <script async src="/js/sistema/functions_{{ config('data.controlador') }}.js"></script>

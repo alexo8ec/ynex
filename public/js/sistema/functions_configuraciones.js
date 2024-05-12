@@ -94,6 +94,104 @@ $(document).ready(function () {
                     previous: $('#previous').val()
                 }
             },
+            pageLength: 50,
+            ajax: {
+                url: "utilidades/getMenu",
+                type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('#token').val()
+                },
+            }, columnDefs: [
+                { targets: [3], className: 'text-center' },
+                { targets: [4], className: 'text-center' },
+                { targets: [5], className: 'text-center' },
+                { targets: [7], className: 'text-center' },
+                { targets: [8], className: 'text-center' },
+                { targets: [9], className: 'text-center' },
+                { targets: [10], className: 'text-center' },
+            ], columns: [{
+                data: 'id_menu'
+            }, {
+                data: 'nombre'
+            }, {
+                data: 'controlador'
+            }, {
+                data: 'icono',
+                render: function (data, type, row) {
+                    return '<i class="' + row.icono + '"></i>';
+                }
+            }, {
+                data: 'orden'
+            }, {
+                data: 'estado',
+                render: function (data, type, row) {
+                    var estado = '<div class="alert alert-success !border-success/10 text-center" role="alert">' + $('#activo').val() + '</div>';
+                    if (row.estado == 0) {
+                        estado = '<div class="alert alert-danger !border-danger/10 text-center" role="alert">' + $('#inactivo').val() + '</div>';
+                    }
+                    return estado;
+                }
+            }, {
+                data: 'usuario_creacion'
+            }, {
+                data: 'created_at',
+                render: function (data, type, row) {
+                    return getFecha(row.created_at, null, '-');
+                }
+            }, {
+                data: 'usuario_modificacion'
+            }, {
+                data: 'updated_at',
+                render: function (data, type, row) {
+                    return getFecha(row.updated_at, null, '-');
+                }
+            }, {
+                data: 'id_menu',
+                render: function (data, type, row) {
+                    var accion = '<li><a class="ti-dropdown-item" href="javascript:void(0);" onclick="cambiarEstado(\'' + row.estado + '\',\'' + row.id_menu + '\',\'Menu\')"><i class="bi bi-check-circle-fill" style="color:green;"></i> ' + $('#activar').val() + '</a></li>';
+                    if (row.estado == 1) {
+                        accion = '<li><a class="ti-dropdown-item" href="javascript:void(0);" onclick="cambiarEstado(\'' + row.estado + '\',\'' + row.id_menu + '\',\'Menu\')"><i class="bi bi-x-circle-fill" style="color:red;"></i> ' + $('#desactivar').val() + '</a></li>';
+                    }
+                    return '<div class="ti-btn-group"><div class="hs-dropdown ti-dropdown"><button class="ti-btn ti-btn-info-full !py-1 !px-4 !text-[0.75rem] ti-dropdown-toggle" type="button" id="dropdownMenuButton1" aria-expanded="false"><i class="ri-list-settings-line"></i><i class="ri-arrow-down-s-line align-middle ms-1 inline-block"></i></button><ul class="hs-dropdown-menu ti-dropdown-menu hidden"aria-labelledby="dropdownMenuButton1"><li><a class="ti-dropdown-item" href="javascript:void(0);"><i class="bi bi-eye-fill" style="color:blue;"></i> Visualizar</a></li><li><a class="ti-dropdown-item" href="javascript:void(0);"><i class="bi bi-node-plus-fill" style="color:green;"></i> Añadir</a></li> <li><hr class="dropdown-divider"></li>' + accion + '</ul></div></div>';
+                }
+            }],
         });
     } catch (error) { }
+    $('.Icon_icon_select__tLN6i').hover(
+        function () {
+            $(this).find('.Icon_icon__I3Lry').toggleClass('icon-hover');
+        },
+        function () {
+            $(this).find('.Icon_icon__I3Lry').toggleClass('icon-hover');
+        }
+    );
+    $('#btnGuardarMenu').click(function () {
+
+    });
 });
+function filtrarIconos() {
+    var valorBusqueda = $('#buscador').val().toLowerCase();
+    $('.Icon_icon_select__tLN6i').each(function () {
+        var textoIcono = $(this).find('.Icon_icon_name__XWqpO').text().toLowerCase();
+        if (textoIcono.includes(valorBusqueda)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+}
+$('#limpiarBuscador').on('click', function () {
+    $('#buscador').val('');
+    $('.Icon_icon_select__tLN6i').show();
+});
+$('#buscador').on('input', function () {
+    filtrarIconos();
+});
+function agregarMenu() {
+
+}
+function agregarIcono(icon) {
+    var iconoPrincipal = icon.querySelector('.Icon_icon__I3Lry i').classList; // Obtener las clases del icono principal
+    var primeraClase = iconoPrincipal[0] + ' ' + iconoPrincipal[1];
+    $('#icono').val(primeraClase);
+}

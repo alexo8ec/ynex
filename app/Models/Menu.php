@@ -12,6 +12,57 @@ class Menu extends Model
     protected $table = 'menu';
     protected $primaryKey  = 'id_menu';
 
+    public static function cambiarEstado($r)
+    {
+        $arrayRespuesta = [];
+        try {
+            $estado = 0;
+            if ($r->estado == 1) {
+                $estado = 0;
+            } else {
+                $estado = 1;
+            }
+            Menu::where('id_menu', $r->id)->update(['estado' => $estado]);
+            $arrayRespuesta = [
+                'status' => 'success',
+                'code' => 200,
+                'message' => 'Datos guardados correctamente',
+            ];
+        } catch (\Exception $e) {
+            $arrayRespuesta = [
+                'status' => 'error',
+                'code' => 500,
+                'message' => $e->getMessage(),
+                'modelo' => self::$modelo,
+                'metodo' => __METHOD__,
+                'ruta' => __FILE__,
+                'linea' => __LINE__,
+            ];
+        }
+        return $arrayRespuesta;
+    }
+    public static function getMenuGlobal($id = '')
+    {
+        if ($id == '') {
+            return Menu::join('users as uc', 'menu.id_usuario_creacion', 'uc.id_usuario')
+                ->join('users as um', 'menu.id_usuario_modificacion', 'um.id_usuario')
+                ->whereNull('id_pertenece')
+                ->get([
+                    'menu.id_menu',
+                    'menu.nombre',
+                    'menu.controlador',
+                    'menu.icono',
+                    'menu.estado',
+                    'menu.orden',
+                    'menu.created_at',
+                    'menu.updated_at',
+                    'uc.usuario as usuario_creacion',
+                    'um.usuario as usuario_modificacion'
+                ]);
+        } else {
+            return Menu::find($id);
+        }
+    }
     public static function getMenu()
     {
         $menu = [];

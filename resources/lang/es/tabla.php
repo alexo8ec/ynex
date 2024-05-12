@@ -29,6 +29,8 @@ return [
     'ficha' => 'Ficha',
     'desactivar' => 'Desactivar',
     'activar' => 'Activar',
+    'activo' => 'Activo',
+    'inactivo' => 'Inactivo',
     'imprimir' => 'Imprimir',
     'anular' => 'Anular',
     'datofirma' => 'Info firma',
