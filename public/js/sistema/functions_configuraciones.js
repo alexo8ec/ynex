@@ -148,9 +148,9 @@ $(document).ready(function () {
             }, {
                 data: 'id_menu',
                 render: function (data, type, row) {
-                    var accion = '<li><a class="ti-dropdown-item" href="javascript:void(0);" onclick="cambiarEstado(\'' + row.estado + '\',\'' + row.id_menu + '\',\'Menu\')"><i class="bi bi-check-circle-fill" style="color:green;"></i> ' + $('#activar').val() + '</a></li>';
+                    var accion = '<li><a class="ti-dropdown-item" href="javascript:void(0);" onclick="setEstado(\'' + row.estado + '\',\'' + row.id_menu + '\',\'Menu\')" data-hs-overlay="#hs-small-modal"><i class="bi bi-check-circle-fill" style="color:green;"></i> ' + $('#activar').val() + '</a></li>';
                     if (row.estado == 1) {
-                        accion = '<li><a class="ti-dropdown-item" href="javascript:void(0);" onclick="cambiarEstado(\'' + row.estado + '\',\'' + row.id_menu + '\',\'Menu\')"><i class="bi bi-x-circle-fill" style="color:red;"></i> ' + $('#desactivar').val() + '</a></li>';
+                        accion = '<li><a class="ti-dropdown-item" href="javascript:void(0);" onclick="setEstado(\'' + row.estado + '\',\'' + row.id_menu + '\',\'Menu\')" data-hs-overlay="#hs-small-modal"><i class="bi bi-x-circle-fill" style="color:red;"></i> ' + $('#desactivar').val() + '</a></li>';
                     }
                     return '<div class="ti-btn-group"><div class="hs-dropdown ti-dropdown"><button class="ti-btn ti-btn-info-full !py-1 !px-4 !text-[0.75rem] ti-dropdown-toggle" type="button" id="dropdownMenuButton1" aria-expanded="false"><i class="ri-list-settings-line"></i><i class="ri-arrow-down-s-line align-middle ms-1 inline-block"></i></button><ul class="hs-dropdown-menu ti-dropdown-menu hidden"aria-labelledby="dropdownMenuButton1"><li><a class="ti-dropdown-item" href="javascript:void(0);"><i class="bi bi-eye-fill" style="color:blue;"></i> Visualizar</a></li><li><a class="ti-dropdown-item" href="javascript:void(0);"><i class="bi bi-node-plus-fill" style="color:green;"></i> Añadir</a></li> <li><hr class="dropdown-divider"></li>' + accion + '</ul></div></div>';
                 }

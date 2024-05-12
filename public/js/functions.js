@@ -1,3 +1,6 @@
+var varEstado = 0;
+var varIdMenu = 0;
+var varTipo = '';
 $(document).ready(function () {
     $('#max-login-attempts').change(function () {
         var data = {
@@ -11,7 +14,15 @@ $(document).ready(function () {
         };
         ajax('utilidades/saveTiempoLogin', data, 'json');
     });
+    $('#btnSi').click(function () {
+        cambiarEstado(varEstado, varIdMenu, varTipo);
+    });
 });
+function setEstado(estado, id, tipo) {
+    varEstado = estado;
+    varIdMenu = id;
+    varTipo = tipo;
+}
 function cambiarEstado(estado, id, tipo) {
     var data = {
         estado: estado,
@@ -22,7 +33,6 @@ function cambiarEstado(estado, id, tipo) {
         json = json.responseJSON;
         if (json.status == 'success') {
             $('.tablaDatos').DataTable().ajax.reload();
-            alert(json.message);
         }
         else {
             alert(json.message);

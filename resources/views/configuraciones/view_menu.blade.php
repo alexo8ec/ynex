@@ -316,3 +316,5 @@
         </div>
     </div>
 </div>
+
+@include('utilidades.view_modal_pregunta')
